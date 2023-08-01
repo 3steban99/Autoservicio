@@ -7,6 +7,7 @@ import Login from './pages/Login';
 import Mascota from './pages/Mascota';
 import MenuCliente from './pages/MenuCliente';
 import UserProvider from './context/userContext';
+import Combos from './pages/Combos';
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
           <Route exact path='/vendedor' element={<Vendedor />} />
           <Route exact path='/menucliente' element={<MenuCliente />} />
           <Route exact path='/mascota' element={<Mascota />} />
+          <Route exact path='/combos' element={<Combos />} />
         </Routes>
       </BrowserRouter>
     </UserProvider>

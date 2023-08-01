@@ -35,10 +35,27 @@ func RegistroMascota(c *fiber.Ctx) error {
 	// Asignar un ID único a la nueva mascota
 	nuevaMascota.ID = ObtenerNuevoIDMascota()
 
-	// Agregar el nuevo cliente a la lista de clientes
+	// Agregar la nueva mascota a la lista de mascotas
 	mascotas = append(mascotas, nuevaMascota)
 
 	return c.Status(fiber.StatusCreated).JSON(fiber.Map{"message": "Mascota registrada exitosamente", "data": nuevaMascota})
+}
+
+// Handler para el registro de pedidos
+func RegistroPedido(c *fiber.Ctx) error{
+	// Leer los datos enviados en el cuerpo de la solicitud y crear un nuevo pedido
+	var nuevoPedido Pedido
+	if err := c.BodyParser(&nuevoPedido); err != nil {
+		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{"message": "Error en el formato de la solicitud"})
+	}
+
+	// Asignar un ID único al nuevo pedido
+	nuevoPedido.ID = ObtenerNuevoIDPedido()
+
+	// Agregar el nuevo pedido a la lista de pedidos
+	pedidos = append(pedidos, nuevoPedido)
+
+	return c.Status(fiber.StatusCreated).JSON(fiber.Map{"message": "Pedido registrado exitosamente", "data": nuevoPedido})
 }
 
 
@@ -51,4 +68,9 @@ func VerClientes(c *fiber.Ctx) error {
 //Handler para ver las mascotas
 func VerMascotas(c *fiber.Ctx) error {
 	return c.Status(fiber.StatusOK).JSON(fiber.Map{"data": mascotas})
+}
+
+//Handler para ver los pedidos
+func VerPedidos(c *fiber.Ctx) error {
+	return c.Status(fiber.StatusOK).JSON(fiber.Map{"data": pedidos})
 }

@@ -12,7 +12,7 @@ const MenuCliente = () =>{
             <Link to='/mascota'>
                 <button>Registra mascota</button>
             </Link>
-            <Link>
+            <Link to='/combos'>
                 <button>Combos</button>
             </Link>
             <Link>
