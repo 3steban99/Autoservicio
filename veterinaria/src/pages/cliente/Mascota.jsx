@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useState } from "react";
-import { useUserContext } from "../context/userContext";
+import { useUserContext } from "../../context/userContext";
 
 
 const Mascota = () => {

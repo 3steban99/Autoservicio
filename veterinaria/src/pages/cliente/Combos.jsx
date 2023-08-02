@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useUserContext } from "../context/userContext";
+import { useUserContext } from "../../context/userContext";
 import axios from "axios";
 
 
@@ -8,9 +8,8 @@ const Combos = () => {
     const [alimento, setAlimento] = useState(null);
     const [complementos, setComplementos] = useState(0);
     const [mascotaId, setMascotaId] = useState();
-    const [pedidosRealizados, setPedidosRealizados] = useState({});
 
-    const { clienteID, clienteName } = useUserContext();
+    const { clienteID, clienteName, pedidosRealizados, setPedidosRealizados } = useUserContext();
 
 
     useEffect(() => {
@@ -83,10 +82,6 @@ const Combos = () => {
                     //logica para guardar el estado de pedidos si se realizo o no, despues para guardarlo en memoria en localstorage asi se pueda cargar en el useEffect
                     setPedidosRealizados((prevState) => ({
                         ...prevState,
-                        [mascotaId]: true,
-                    }));
-                    localStorage.setItem("pedidosRealizados", JSON.stringify({
-                        ...pedidosRealizados,
                         [mascotaId]: true,
                     }));
                 })

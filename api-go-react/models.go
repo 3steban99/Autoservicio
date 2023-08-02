@@ -15,3 +15,8 @@ func ObtenerNuevoIDMascota() int {
 func ObtenerNuevoIDPedido() int {
 	return len(pedidos) + 1
 }
+
+// Funcion para obtener un nuevo ID para el vendedor
+func ObtenerNuevoIDVendedor() int{
+	return len(vendedores) + 1
+}

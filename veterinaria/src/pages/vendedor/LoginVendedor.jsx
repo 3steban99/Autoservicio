@@ -1,46 +1,45 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { useUserContext } from "../context/userContext";
+import { useUserContext } from "../../context/userContext";
 
-
-const Login = () => {
+const LoginVendedor = ()=>{
     const [nombre, setNombre] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const [clientes, setClientes] = useState([]);
-    const { setClienteID, setClienteName } = useUserContext();
+    const [vendedores, setVendedores]= useState([])
+    const { setVendedorID, setVendedorName } = useUserContext();
+
 
     const navigate = useNavigate()
 
     // Función para obtener los clientes desde el backend
-    const obtenerClientes = async () => {
+    const obtenerVendedor = async () => {
         try {
-            const response = await axios.get("http://127.0.0.1:3001/api/clientes");
-            setClientes(response.data.data);
+            const response = await axios.get("http://127.0.0.1:3001/api/vendedores");
+            setVendedores(response.data.data);
         } catch (error) {
             console.error(error);
         }
     };
 
-    // Llamada a obtenerClientes al cargar el componente
     useEffect(() => {
-        obtenerClientes();
+        obtenerVendedor();
     }, []);
 
     const handleSubmit = (e) => {
         e.preventDefault();
 
         // Verificar si las credenciales coinciden con algún cliente registrado
-        const clienteEncontrado = clientes.find(
-            (cliente) => cliente.Nombre === nombre && cliente.Email === email && cliente.Password === password
+        const vendedorEncontrado = vendedores.find(
+            (vendedor) => vendedor.Nombre === nombre && vendedor.Email === email && vendedor.Password === password
         );
 
-        if (clienteEncontrado) {
+        if (vendedorEncontrado) {
             console.log("Login exitoso");
-            navigate('/menucliente')
-            setClienteID(clienteEncontrado.ID)
-            setClienteName(clienteEncontrado.Nombre)
+            navigate('/menuvendedor')
+            setVendedorID(vendedorEncontrado.ID)
+            setVendedorName(vendedorEncontrado.Nombre)
 
         } else {
             console.log("Credenciales incorrectas");
@@ -52,8 +51,10 @@ const Login = () => {
         setPassword("");
     };
 
-    return (
-        <form onSubmit={handleSubmit}>
+
+    return(
+        <div>
+            <form onSubmit={handleSubmit}>
             <label>
                 Nombre:
                 <input type="text" value={nombre} onChange={(e) => setNombre(e.target.value)} />
@@ -67,11 +68,13 @@ const Login = () => {
                 <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
             </label>
             <button type="submit">Login</button>
-            <Link to='/registrocliente'>
+            <Link to='/registrovendedor'>
                 <button>Registrar</button>
             </Link>
         </form>
+        </div>
     )
 }
 
-export default Login;
+
+export default LoginVendedor

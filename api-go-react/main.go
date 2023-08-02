@@ -16,6 +16,14 @@ type Cliente struct {
 	Password string // Contraseña del cliente
 }
 
+// Estructuras de datos para el vendedor
+type Vendedor struct{
+	ID 		 int 	// ID del vendedor
+	Nombre	 string	// Nombre del vendedor
+	Email	 string	// Email del vendedor
+	Password string // Contraseña del vendedor
+}
+
 // Estructuras de datos para la mascota
 type Mascota struct {
 	ID      int    // ID de la mascota
@@ -41,6 +49,7 @@ type Pedido struct {
 var clientes []Cliente
 var mascotas []Mascota
 var pedidos  []Pedido
+var vendedores []Vendedor
 
 func main() {
 	app := fiber.New()
@@ -67,6 +76,15 @@ func main() {
 
 	// Ruta para ver las mascotas
 	app.Get("/api/mascotas", VerMascotas)
+
+	// Ruta para ver los vendedores
+	app.Get("/api/vendedores", VerVendedores)
+
+	// Ruta para el registro de vendedores
+	app.Post("/api/vendedores", RegistroVendedor)
+
+	// Ruta para despachar los pedidos
+	app.Put("/api/pedidos/:id/despachar", DespacharPedido)
 
 	// Iniciar el servidor en el puerto 3001
 	log.Fatal(app.Listen(":3001"))
