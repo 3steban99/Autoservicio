@@ -47,32 +47,75 @@ const Mascota = () => {
     };
 
     return (
-        <form onSubmit={handleSubmit}>
-            <label>
-                Nombre de la mascota:
-                <input type="text" value={nombre} onChange={(e) => setNombre(e.target.value)} />
-            </label>
-            <label>
-                Tipo de mascota:
-                <select value={tipo} onChange={(e) => setTipo(e.target.value)}>
-                    <option value="perro">Perro</option>
-                    <option value="gato">Gato</option>
-                </select>
-            </label>
-            <label>
-                Peso de la mascota:
-                <input type="number" value={peso} onChange={(e) => setPeso(parseFloat(e.target.value))} />
-            </label>
-            <label>
-                Edad de la mascota:
-                <input type="number" value={edad} onChange={(e) => setEdad(parseInt(e.target.value))} />
-            </label>
-            <label>
-                Castrado:
-                <input type="checkbox" checked={castrado} onChange={(e) => setCastrado(e.target.checked)} />
-            </label>
-            <button type="submit">Registrar mascota</button>
-        </form>
+        <div className="container mt-5">
+            <form onSubmit={handleSubmit} className="d-flex flex-column align-items-center">
+                <div className="mb-3">
+                    <label htmlFor="nombreMascota" className="form-label">
+                        Nombre de la mascota:
+                    </label>
+                    <input
+                        type="text"
+                        className="form-control"
+                        id="nombreMascota"
+                        value={nombre}
+                        onChange={(e) => setNombre(e.target.value)}
+                    />
+                </div>
+                <div className="mb-3">
+                    <label htmlFor="tipoMascota" className="form-label">
+                        Tipo de mascota:
+                    </label>
+                    <select
+                        className="form-select"
+                        id="tipoMascota"
+                        value={tipo}
+                        onChange={(e) => setTipo(e.target.value)}
+                    >
+                        <option value="perro">Perro</option>
+                        <option value="gato">Gato</option>
+                    </select>
+                </div>
+                <div className="mb-3">
+                    <label htmlFor="pesoMascota" className="form-label">
+                        Peso de la mascota:
+                    </label>
+                    <input
+                        type="number"
+                        className="form-control"
+                        id="pesoMascota"
+                        value={peso}
+                        onChange={(e) => setPeso(parseFloat(e.target.value))}
+                    />
+                </div>
+                <div className="mb-3">
+                    <label htmlFor="edadMascota" className="form-label">
+                        Edad de la mascota:
+                    </label>
+                    <input
+                        type="number"
+                        className="form-control"
+                        id="edadMascota"
+                        value={edad}
+                        onChange={(e) => setEdad(parseInt(e.target.value))}
+                    />
+                </div>
+                <div className="form-check mb-3">
+                    <input
+                        type="checkbox"
+                        className="form-check-input"
+                        id="castradoMascota"
+                        checked={castrado}
+                        onChange={(e) => setCastrado(e.target.checked)}
+                    />
+                    <label className="form-check-label" htmlFor="castradoMascota">
+                        Castrado
+                    </label>
+                </div>
+                <button type="submit" className="btn btn-primary">
+                    Registrar mascota
+                </button>
+            </form>
+        </div>
     );
 
 };

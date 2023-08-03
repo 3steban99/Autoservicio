@@ -2,22 +2,29 @@ import { Link } from "react-router-dom";
 import { useUserContext } from "../../context/userContext";
 
 
-const MenuCliente = () =>{
+const MenuCliente = () => {
 
-    const {clienteName} = useUserContext();
+    const { clienteName } = useUserContext();
 
-    return(
+    return (
         <div>
-            <h1>{clienteName}</h1>
-            <Link to='/mascota'>
-                <button>Registra mascota</button>
+            <Link to='/' className="btn btn-info mb-4">
+                Inicio
             </Link>
-            <Link to='/combos'>
-                <button>Combos</button>
-            </Link>
-            <Link to='/historialcliente'>
-                <button>Ver Pedido</button>
-            </Link>
+            <div className="container-main">
+                <h1> Cliente: {clienteName}</h1>
+                <div className="container-button">
+                    <Link to="/mascota" className="btn btn-info btn-lg mb-4 btn-custom">
+                        Registrar mascota
+                    </Link>
+                    <Link to="/combos" className="btn btn-info btn-lg mb-4 btn-custom">
+                        Combos
+                    </Link>
+                    <Link to="/historialcliente" className="btn btn-info btn-lg btn-custom">
+                        Ver Pedidos
+                    </Link>
+                </div>
+            </div>
         </div>
     )
 }

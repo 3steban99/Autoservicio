@@ -32,24 +32,50 @@ const RegistroCliente = () => {
     };
 
     return (
-        <form onSubmit={handleSubmit}>
-            <label>
-                Nombre:
-                <input type="text" value={nombre} onChange={(e) => setNombre(e.target.value)} />
-            </label>
-            <label>
-                Email:
-                <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
-            </label>
-            <label>
-                Contraseña:
-                <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
-            </label>
-            <button type="submit">Registrar</button>
-            <Link to='/logincliente'>
-                <button>Iniciar seccion</button>
-            </Link>
-        </form>
+        <div className="container mt-5">
+            <h1 className="text-center">Registro de Cliente</h1>
+            <form onSubmit={handleSubmit}>
+                <div className="form-group">
+                    <label htmlFor="nombre">Nombre:</label>
+                    <input
+                        type="text"
+                        id="nombre"
+                        value={nombre}
+                        onChange={(e) => setNombre(e.target.value)}
+                        className="form-control"
+                        required
+                    />
+                </div>
+                <div className="form-group">
+                    <label htmlFor="email">Email:</label>
+                    <input
+                        type="email"
+                        id="email"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                        className="form-control"
+                        required
+                    />
+                </div>
+                <div className="form-group">
+                    <label htmlFor="password">Contraseña:</label>
+                    <input
+                        type="password"
+                        id="password"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                        className="form-control"
+                        required
+                    />
+                </div>
+                <button type="submit" className="btn btn-primary btn-block">
+                    Registrar
+                </button>
+            </form>
+            <p className="mt-3 text-center">
+                ¿Ya tienes una cuenta? <Link to="/logincliente">Iniciar sesión aquí</Link>
+            </p>
+        </div>
     );
 };
 

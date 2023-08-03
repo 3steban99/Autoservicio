@@ -3,11 +3,11 @@ import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useUserContext } from "../../context/userContext";
 
-const LoginVendedor = ()=>{
+const LoginVendedor = () => {
     const [nombre, setNombre] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const [vendedores, setVendedores]= useState([])
+    const [vendedores, setVendedores] = useState([])
     const { setVendedorID, setVendedorName } = useUserContext();
 
 
@@ -43,7 +43,7 @@ const LoginVendedor = ()=>{
 
         } else {
             console.log("Credenciales incorrectas");
-            
+
         }
 
         // Limpiar los campos del formulario después de un login exitoso o fallido
@@ -52,26 +52,50 @@ const LoginVendedor = ()=>{
     };
 
 
-    return(
-        <div>
+    return (
+        <div className="container mt-5">
+            <h1 className="text-center">Inicio de Sesión - Vendedor</h1>
             <form onSubmit={handleSubmit}>
-            <label>
-                Nombre:
-                <input type="text" value={nombre} onChange={(e) => setNombre(e.target.value)} />
-            </label>
-            <label>
-                Email:
-                <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
-            </label>
-            <label>
-                Contraseña:
-                <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
-            </label>
-            <button type="submit">Login</button>
-            <Link to='/registrovendedor'>
-                <button>Registrar</button>
-            </Link>
-        </form>
+                <div className="form-group">
+                    <label htmlFor="nombre">Nombre:</label>
+                    <input
+                        type="text"
+                        id="nombre"
+                        value={nombre}
+                        onChange={(e) => setNombre(e.target.value)}
+                        className="form-control"
+                        required
+                    />
+                </div>
+                <div className="form-group">
+                    <label htmlFor="email">Email:</label>
+                    <input
+                        type="email"
+                        id="email"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                        className="form-control"
+                        required
+                    />
+                </div>
+                <div className="form-group">
+                    <label htmlFor="password">Contraseña:</label>
+                    <input
+                        type="password"
+                        id="password"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                        className="form-control"
+                        required
+                    />
+                </div>
+                <button type="submit" className="btn btn-primary btn-block">
+                    Iniciar Sesión
+                </button>
+            </form>
+            <p className="mt-3 text-center">
+                ¿No tienes una cuenta? <Link to="/registrovendedor">Regístrate aquí</Link>
+            </p>
         </div>
     )
 }

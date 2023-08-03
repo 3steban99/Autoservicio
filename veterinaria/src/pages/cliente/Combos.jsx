@@ -94,10 +94,10 @@ const Combos = () => {
     }
 
     return (
-        <div>
+        <div className="container mt-5">
             <div>
-                <h2>Mascotas del cliente {clienteName}</h2>
-                <table>
+                <h2 className="mb-4">Mascotas del cliente {clienteName}</h2>
+                <table className="table table-striped">
                     <thead>
                         <tr>
                             <th>Nombre</th>
@@ -105,6 +105,7 @@ const Combos = () => {
                             <th>Peso</th>
                             <th>Edad</th>
                             <th>Castrado</th>
+                            <th>Acciones</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -116,7 +117,12 @@ const Combos = () => {
                                 <td>{mascota.Edad}</td>
                                 <td>{mascota.Castrado ? "Sí" : "No"}</td>
                                 <td>
-                                    <button onClick={() => handlerVerCombo(mascota)}>ver combos</button>
+                                    <button
+                                        onClick={() => handlerVerCombo(mascota)}
+                                        className="btn btn-primary btn-sm"
+                                    >
+                                        Ver combos
+                                    </button>
                                 </td>
                             </tr>
                         ))}
@@ -125,25 +131,36 @@ const Combos = () => {
             </div>
             <div>
                 {alimento !== null && complementos !== null && !pedidosRealizados[mascotaId] && (
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Cantidad de alimento</th>
-                                <th>Complementos dietarios</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>{alimento}</td>
-                                <td>{complementos}</td>
-                                <td>
-                                    <button onClick={handlerComprar}>Comprar</button>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
+                    <div className="mt-4">
+                        <h3>Detalles del combo</h3>
+                        <table className="table">
+                            <thead>
+                                <tr>
+                                    <th>Cantidad de alimento</th>
+                                    <th>Complementos dietarios</th>
+                                    <th>Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>{alimento}</td>
+                                    <td>{complementos}</td>
+                                    <td>
+                                        <button
+                                            onClick={handlerComprar}
+                                            className="btn btn-success btn-sm"
+                                        >
+                                            Comprar
+                                        </button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
                 )}
-                {pedidosRealizados[mascotaId] && <p>¡Pedido realizado para esta mascota!</p>}
+                {pedidosRealizados[mascotaId] && (
+                    <p className="mt-4">¡Pedido realizado para esta mascota!</p>
+                )}
             </div>
         </div>
     )

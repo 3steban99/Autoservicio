@@ -8,6 +8,8 @@ const Pedidos = () => {
 
     const { setPedidosRealizados } = useUserContext();
 
+
+    //Obtener pedidos de los clientes
     const obtenerPedidosClientes = async () => {
         try {
             const response = await axios.get("http://127.0.0.1:3001/api/pedidos");
@@ -25,7 +27,7 @@ const Pedidos = () => {
         try {
             // Realiza la solicitud para despachar el pedido con el ID especificado
             await axios.put(`http://127.0.0.1:3001/api/pedidos/${pedidoId}/despachar`);
-            // Actualiza el estado local para reflejar el cambio de despacho
+            // Actualiza el estado local para reflejar el cambio de despacho y para que se pueda comprar de nuevo con la mascota
             setPedidosC((prevPedidos) =>
                 prevPedidos.map((pedido) =>
                     pedido.ID === pedidoId ? { ...pedido, Despacho: true } : pedido
@@ -41,9 +43,9 @@ const Pedidos = () => {
     };
 
     return (
-        <div>
+        <div className="container mt-5">
             <h2>Historial de pedidos</h2>
-            <table>
+            <table className="table table-striped">
                 <thead>
                     <tr>
                         <th>Cliente n°</th>
@@ -58,13 +60,16 @@ const Pedidos = () => {
                         <tr key={pedido.ID}>
                             <td>{pedido.ClienteID}</td>
                             <td>{pedido.MascotaID}</td>
-                            <td>{pedido.Alimento}kg</td>
+                            <td>{pedido.Alimento} kg</td>
                             <td>{pedido.Complementos}</td>
                             <td>
                                 {pedido.Despacho ? (
                                     "Despachado"
                                 ) : (
-                                    <button onClick={() => handleDespacharPedido(pedido.ID, pedido.MascotaID)}>
+                                    <button
+                                        className="btn btn-primary"
+                                        onClick={() => handleDespacharPedido(pedido.ID, pedido.MascotaID)}
+                                    >
                                         Despachar
                                     </button>
                                 )}

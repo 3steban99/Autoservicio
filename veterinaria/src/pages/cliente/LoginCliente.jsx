@@ -44,7 +44,7 @@ const LoginCliente = () => {
 
         } else {
             console.log("Credenciales incorrectas");
-            
+
         }
 
         // Limpiar los campos del formulario después de un login exitoso o fallido
@@ -53,24 +53,51 @@ const LoginCliente = () => {
     };
 
     return (
-        <form onSubmit={handleSubmit}>
-            <label>
-                Nombre:
-                <input type="text" value={nombre} onChange={(e) => setNombre(e.target.value)} />
-            </label>
-            <label>
-                Email:
-                <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
-            </label>
-            <label>
-                Contraseña:
-                <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
-            </label>
-            <button type="submit">Login</button>
-            <Link to='/registrocliente'>
-                <button>Registrar</button>
-            </Link>
-        </form>
+        <div className="container mt-5">
+            <h1 className="text-center">Iniciar Sesión</h1>
+            <form onSubmit={handleSubmit}>
+                <div className="form-group">
+                    <label htmlFor="nombre">Nombre:</label>
+                    <input
+                        type="text"
+                        id="nombre"
+                        value={nombre}
+                        onChange={(e) => setNombre(e.target.value)}
+                        className="form-control"
+                        required
+                    />
+                </div>
+                <div className="form-group">
+                    <label htmlFor="email">Email:</label>
+                    <input
+                        type="email"
+                        id="email"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                        className="form-control"
+                        required
+                    />
+                </div>
+                <div className="form-group">
+                    <label htmlFor="password">Contraseña:</label>
+                    <input
+                        type="password"
+                        id="password"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                        className="form-control"
+                        required
+                    />
+                </div>
+                <button type="submit" className="btn btn-primary btn-block">
+                    Iniciar Sesión
+                </button>
+            </form>
+            <p className="mt-3 text-center">
+                ¿No tienes una cuenta?{" "}
+                <Link to="/registrocliente">Regístrate aquí</Link>
+            </p>
+        </div>
     )
 }
 
