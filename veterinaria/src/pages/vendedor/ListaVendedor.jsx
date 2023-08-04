@@ -1,5 +1,6 @@
 import axios from "axios"
 import { useEffect, useState } from "react"
+import { Link } from "react-router-dom"
 
 
 
@@ -44,6 +45,9 @@ const ListaVendedor = () => {
                     ))}
                 </tbody>
             </table>
+            <Link to='/menuvendedor' className="btn btn-primary">
+                    Volver
+            </Link>
         </div>
     )
 }

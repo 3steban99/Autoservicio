@@ -17,9 +17,8 @@ const RegistroVendedor = () => {
                 email,
                 password,
             });
-
-            console.log(response.data); // Debería imprimir "Vendedor registrado exitosamente"
-
+            alert("Vendedor registrado exitosamente")
+            
             // Limpiar los campos del formulario después de un registro exitoso
             setNombre('');
             setEmail('');

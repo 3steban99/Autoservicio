@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useUserContext } from "../../context/userContext";
+import { Link } from "react-router-dom";
 
 
 const Pedidos = () => {
@@ -78,6 +79,9 @@ const Pedidos = () => {
                     ))}
                 </tbody>
             </table>
+            <Link to='/menuvendedor' className="btn btn-primary">
+                    Volver
+            </Link>
         </div>
     );
 };

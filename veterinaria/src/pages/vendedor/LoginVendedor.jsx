@@ -10,6 +10,8 @@ const LoginVendedor = () => {
     const [vendedores, setVendedores] = useState([])
     const { setVendedorID, setVendedorName } = useUserContext();
 
+    // Para saber si ingreso correctamente los datos para poder iniciar sesion
+    const [loginError, setLoginError] = useState(false);
 
     const navigate = useNavigate()
 
@@ -36,14 +38,14 @@ const LoginVendedor = () => {
         );
 
         if (vendedorEncontrado) {
-            console.log("Login exitoso");
             navigate('/menuvendedor')
             setVendedorID(vendedorEncontrado.ID)
             setVendedorName(vendedorEncontrado.Nombre)
+            setLoginError(false);
 
         } else {
-            console.log("Credenciales incorrectas");
-
+            alert("Credenciales incorrectas")
+            setLoginError(true);
         }
 
         // Limpiar los campos del formulario después de un login exitoso o fallido
@@ -92,7 +94,15 @@ const LoginVendedor = () => {
                 <button type="submit" className="btn btn-primary btn-block">
                     Iniciar Sesión
                 </button>
+                <Link to='/' className="btn btn-primary">
+                    Volver
+                </Link>
             </form>
+            {loginError && (
+                <p className="mt-3 text-center text-danger">
+                    Credenciales incorrectas. Por favor, inténtelo nuevamente.
+                </p>
+            )}
             <p className="mt-3 text-center">
                 ¿No tienes una cuenta? <Link to="/registrovendedor">Regístrate aquí</Link>
             </p>

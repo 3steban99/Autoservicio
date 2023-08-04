@@ -19,8 +19,7 @@ const RegistroCliente = () => {
                 email,
                 password,
             });
-
-            console.log(response.data); // Debería imprimir "Cliente registrado exitosamente"
+            alert("Cliente registrado exitosamente")
 
             // Limpiar los campos del formulario después de un registro exitoso
             setNombre('');

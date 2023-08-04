@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useUserContext } from "../../context/userContext";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 
 const HistorialCliente = () => {
@@ -49,6 +50,9 @@ const HistorialCliente = () => {
                     ))}
                 </tbody>
             </table>
+            <Link to='/menucliente' className="btn btn-primary">
+                    Volver
+            </Link>
         </div>
     )
 }

@@ -4,6 +4,9 @@ const UserContext = createContext();
 
 export const useUserContext = () => useContext(UserContext);
 
+
+//Creacion de context para poder guardar en un estado la id y nombre de los clientes y vendedores que inician sesion, para poder mostrarlo en demas paginas.
+
 const UserProvider = ({ children }) => {
     const [clienteID, setClienteID] = useState(null);
     const [clienteName, setClienteName] = useState("");

@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useUserContext } from "../../context/userContext";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 
 const Combos = () => {
@@ -78,6 +79,7 @@ const Combos = () => {
             // Enviar la solicitud POST para crear el pedido
             axios.post("http://127.0.0.1:3001/api/pedidos", pedidoData)
                 .then((response) => {
+                    alert("Pedido creado exitosamente", response.data)
                     console.log("Pedido creado exitosamente:", response.data);
                     //logica para guardar el estado de pedidos si se realizo o no, despues para guardarlo en memoria en localstorage asi se pueda cargar en el useEffect
                     setPedidosRealizados((prevState) => ({
@@ -162,6 +164,9 @@ const Combos = () => {
                     <p className="mt-4">¡Pedido realizado para esta mascota!</p>
                 )}
             </div>
+            <Link to='/menucliente' className="btn btn-primary">
+                    Volver
+            </Link>
         </div>
     )
 }

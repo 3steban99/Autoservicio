@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useState } from "react";
 import { useUserContext } from "../../context/userContext";
+import { Link } from "react-router-dom";
 
 
 const Mascota = () => {
@@ -33,8 +34,8 @@ const Mascota = () => {
                 DueñoID: clienteID // Asociar la mascota con el cliente utilizando el ID del cliente
             });
 
-            console.log(response.data); // Debería imprimir "Mascota registrada exitosamente"
-
+            alert("Mascota registrada exitosamente")
+            
             // Limpiar los campos del formulario después de un registro exitoso
             setNombre('');
             setTipo('perro');
@@ -111,9 +112,12 @@ const Mascota = () => {
                         Castrado
                     </label>
                 </div>
-                <button type="submit" className="btn btn-primary">
+                <button type="submit" className="btn btn-primary mb-3">
                     Registrar mascota
                 </button>
+                <Link to='/menucliente' className="btn btn-primary">
+                    Volver
+                </Link>
             </form>
         </div>
     );

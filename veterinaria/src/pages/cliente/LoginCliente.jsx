@@ -11,6 +11,9 @@ const LoginCliente = () => {
     const [clientes, setClientes] = useState([]);
     const { setClienteID, setClienteName } = useUserContext();
 
+    // Para saber si ingreso correctamente los datos para poder iniciar sesion
+    const [loginError, setLoginError] = useState(false);
+
     const navigate = useNavigate()
 
     // Función para obtener los clientes desde el backend
@@ -32,19 +35,19 @@ const LoginCliente = () => {
         e.preventDefault();
 
         // Verificar si las credenciales coinciden con algún cliente registrado
-        const clienteEncontrado = clientes.find(
+        const clienteEncontrado = clientes && clientes.find(
             (cliente) => cliente.Nombre === nombre && cliente.Email === email && cliente.Password === password
         );
 
         if (clienteEncontrado) {
-            console.log("Login exitoso");
             navigate('/menucliente')
             setClienteID(clienteEncontrado.ID)
             setClienteName(clienteEncontrado.Nombre)
+            setLoginError(false);
 
         } else {
-            console.log("Credenciales incorrectas");
-
+            alert("Credenciales incorrectas")
+            setLoginError(true);
         }
 
         // Limpiar los campos del formulario después de un login exitoso o fallido
@@ -92,7 +95,15 @@ const LoginCliente = () => {
                 <button type="submit" className="btn btn-primary btn-block">
                     Iniciar Sesión
                 </button>
+                <Link to='/' className="btn btn-primary">
+                    Volver
+                </Link>
             </form>
+            {loginError && (
+                <p className="mt-3 text-center text-danger">
+                    Credenciales incorrectas. Por favor, inténtelo nuevamente.
+                </p>
+            )}
             <p className="mt-3 text-center">
                 ¿No tienes una cuenta?{" "}
                 <Link to="/registrocliente">Regístrate aquí</Link>

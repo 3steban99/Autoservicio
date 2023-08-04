@@ -17,6 +17,9 @@ import ListaVendedor from './pages/vendedor/ListaVendedor';
 
 
 function App() {
+
+
+  //Creacion de todas las rutas
   return (
     <UserProvider>
       <BrowserRouter>
